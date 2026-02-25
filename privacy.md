@@ -1,6 +1,6 @@
 # Privacy Policy
 
-Time does not collect, store, or share any personal data.
+Yaosamo Time does not collect, store, or share any personal data.
 
 No accounts.  
 No analytics.  
