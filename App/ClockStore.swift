@@ -85,7 +85,7 @@ final class ClockStore: ObservableObject {
     }
 
     func resetToCurrentHour() {
-        guard let preferred = zones.first else { return }
+        guard let preferred = defaultSelectionZone() else { return }
         let hour = localHour(in: preferred.timeZone, at: now)
         select(hour: hour, in: preferred)
     }
@@ -185,9 +185,14 @@ final class ClockStore: ObservableObject {
     }
 
     private func ensureDefaultSelection() {
-        guard let preferred = zones.first else { return }
+        guard let preferred = defaultSelectionZone() else { return }
         let hour = localHour(in: preferred.timeZone, at: now)
         select(hour: hour, in: preferred)
+    }
+
+    private func defaultSelectionZone() -> ZoneClock? {
+        let systemTimeZoneID = TimeZone.current.identifier
+        return zones.first(where: { $0.timeZone == systemTimeZoneID }) ?? zones.first
     }
 
     private func applySystemDefaultZone() {
