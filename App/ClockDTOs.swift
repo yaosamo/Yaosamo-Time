@@ -1,5 +1,24 @@
 import Foundation
 
+enum AppThemePreference: String, Codable, CaseIterable, Identifiable {
+    case system
+    case dark
+    case light
+
+    var id: String { rawValue }
+
+    var title: String {
+        switch self {
+        case .system:
+            return "System"
+        case .dark:
+            return "Dark"
+        case .light:
+            return "Light"
+        }
+    }
+}
+
 struct ViewerResolvedZone {
     let timeZone: String
     let title: String
@@ -9,6 +28,7 @@ struct ViewerResolvedZone {
 struct PersistedClockStoreState: Codable {
     let zones: [ZoneClock]
     let selected: PersistedSelectedReference?
+    let themePreference: AppThemePreference?
 }
 
 struct PersistedSelectedReference: Codable {

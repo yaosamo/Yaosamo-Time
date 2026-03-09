@@ -8,28 +8,44 @@
 import SwiftUI
 import AppKit
 
-final class AppDelegate: NSObject, NSApplicationDelegate {
-    func applicationDidFinishLaunching(_ notification: Notification) {
-        NSApp.setActivationPolicy(.accessory)
+@main
+struct Yaosamo_TimeApp: App {
+    @StateObject private var clockStore: ClockStore
+    private let settingsWindowController: SettingsWindowController
+    private let menuBarController: MenuBarController
+
+    init() {
+        let clockStore = ClockStore()
+        _clockStore = StateObject(wrappedValue: clockStore)
+        let settingsWindowController = SettingsWindowController(clockStore: clockStore)
+        self.settingsWindowController = settingsWindowController
+        menuBarController = MenuBarController(clockStore: clockStore, settingsWindowController: settingsWindowController)
+    }
+
+    var body: some Scene {
+        Settings { EmptyView() }
+            .commands {
+                AppMenuCommands(settingsWindowController: settingsWindowController)
+            }
     }
 }
 
-@main
-struct Yaosamo_TimeApp: App {
-    @NSApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
-    @StateObject private var clockStore = ClockStore()
+private struct AppMenuCommands: Commands {
+    let settingsWindowController: SettingsWindowController
 
-    var body: some Scene {
-        MenuBarExtra {
-            ContentView()
-                .environmentObject(clockStore)
-        } label: {
-            Label(clockStore.menuBarLabel, systemImage: "clock")
+    var body: some Commands {
+        CommandGroup(replacing: .appSettings) {
+            Button("Preferences…") {
+                settingsWindowController.showWindow()
+            }
+            .keyboardShortcut(",", modifiers: .command)
         }
-        .menuBarExtraStyle(.window)
 
-        Settings {
-            EmptyView()
+        CommandGroup(replacing: .appTermination) {
+            Button("Quit Yaosamo Time") {
+                NSApp.terminate(nil)
+            }
+            .keyboardShortcut("q", modifiers: .command)
         }
     }
 }

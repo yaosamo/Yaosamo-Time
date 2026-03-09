@@ -1,5 +1,6 @@
 import SwiftUI
 import Combine
+import AppKit
 
 @MainActor
 final class ClockStore: ObservableObject {
@@ -15,11 +16,13 @@ final class ClockStore: ObservableObject {
         ZoneClock(timeZone: "Europe/Warsaw", title: "Warsaw", subtitle: "Poland")
     ]
     @Published private(set) var uses24HourClock = ClockStore.detectUses24HourClock()
+    @Published private(set) var themePreference: AppThemePreference = .system
 
     private var timer: Timer?
 
     init() {
         let restoredPersistedState = restorePersistedState()
+        applyThemePreference()
         if !restoredPersistedState {
             applySystemDefaultZone()
             ensureDefaultSelection()
@@ -35,8 +38,10 @@ final class ClockStore: ObservableObject {
     }
 
     var menuBarLabel: String {
-        let warsaw = zones.last?.timeZone ?? TimeZone.current.identifier
-        return compactTime(for: warsaw, date: now)
+        let selectedTimeZone = selectedReference.flatMap { selected in
+            zones.first(where: { $0.id == selected.sourceZoneID })?.timeZone
+        }
+        return compactTime(for: selectedTimeZone ?? TimeZone.current.identifier, date: now)
     }
 
     func compactTime(for timeZoneID: String, date: Date) -> String {
@@ -88,6 +93,13 @@ final class ClockStore: ObservableObject {
         guard let preferred = defaultSelectionZone() else { return }
         let hour = localHour(in: preferred.timeZone, at: now)
         select(hour: hour, in: preferred)
+    }
+
+    func setThemePreference(_ preference: AppThemePreference) {
+        guard themePreference != preference else { return }
+        themePreference = preference
+        applyThemePreference()
+        persistState()
     }
 
     @discardableResult
@@ -191,6 +203,10 @@ final class ClockStore: ObservableObject {
     }
 
     private func defaultSelectionZone() -> ZoneClock? {
+        if zones.indices.contains(1) {
+            return zones[1]
+        }
+
         let systemTimeZoneID = TimeZone.current.identifier
         return zones.first(where: { $0.timeZone == systemTimeZoneID }) ?? zones.first
     }
@@ -281,6 +297,8 @@ final class ClockStore: ObservableObject {
             ensureDefaultSelection()
         }
 
+        themePreference = state.themePreference ?? .system
+
         return true
     }
 
@@ -292,11 +310,16 @@ final class ClockStore: ObservableObject {
                     sourceZoneID: $0.sourceZoneID,
                     localHour: $0.localHour
                 )
-            }
+            },
+            themePreference: themePreference
         )
 
         guard let data = try? JSONEncoder().encode(state) else { return }
         UserDefaults.standard.set(data, forKey: Self.persistedStateKey)
+    }
+
+    private func applyThemePreference() {
+        NSApp?.appearance = themePreference.appearance
     }
 
     private func buildViewerDefaultZone(from viewerContext: ViewerHourFormatResponse) -> ViewerResolvedZone? {

@@ -10,6 +10,7 @@ struct ZoneColumnHeaderView: View {
     let zone: ZoneClock
     let now: Date
     let width: CGFloat
+    let isSelectedSource: Bool
     let isDragging: Bool
     let dragOffset: CGSize
     let showPlaceholder: Bool
@@ -79,6 +80,10 @@ struct ZoneColumnHeaderView: View {
             RoundedRectangle(cornerRadius: 10, style: .continuous)
                 .fill(headerHoverFillColor.opacity(isHeaderHovering ? 1 : 0))
         )
+        .overlay {
+            RoundedRectangle(cornerRadius: 10, style: .continuous)
+                .stroke(selectedBorderColor, lineWidth: isSelectedSource ? 1 : 0)
+        }
         .overlay(alignment: .topTrailing) {
             Button {
                 clockStore.removeZone(id: zone.id)
@@ -167,6 +172,10 @@ struct ZoneColumnHeaderView: View {
     private var placeholderStrokeColor: Color {
         colorScheme == .dark ? Color.white.opacity(0.15) : Color.black.opacity(0.10)
     }
+
+    private var selectedBorderColor: Color {
+        colorScheme == .dark ? Color.white.opacity(0.24) : Color.black.opacity(0.18)
+    }
 }
 
 struct ZoneTimelineColumnView: View {
@@ -189,6 +198,10 @@ struct ZoneTimelineColumnView: View {
     let onTimelineDragChanged: (CGPoint, CGSize) -> Void
     let onTimelineDragEnded: () -> Void
     let onTimelineHoverChange: (Bool) -> Void
+
+    private var isSelectedSource: Bool {
+        selectedSourceZoneID == zone.id
+    }
 
     var body: some View {
         ZStack(alignment: .top) {
@@ -243,6 +256,11 @@ struct ZoneTimelineColumnView: View {
                         .frame(height: rowHeight)
                     }
                 }
+            }
+            .overlay {
+                RoundedRectangle(cornerRadius: 12, style: .continuous)
+                    .stroke(selectedBorderColor, lineWidth: isSelectedSource ? 1 : 0)
+                    .padding(.horizontal, 1)
             }
             .offset(dragOffset)
             .zIndex(isDragging ? 10 : 0)
@@ -300,6 +318,10 @@ struct ZoneTimelineColumnView: View {
             return Color(red: 0.90, green: 0.76, blue: 0.02)
         }
         return Color(red: 99 / 255, green: 87 / 255, blue: 241 / 255)
+    }
+
+    private var selectedBorderColor: Color {
+        colorScheme == .dark ? Color.white.opacity(0.24) : Color.black.opacity(0.18)
     }
 
     private nonisolated func topFadeProgress(rowFrame: CGRect) -> Double {

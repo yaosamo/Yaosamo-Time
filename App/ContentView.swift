@@ -62,6 +62,7 @@ struct ContentView: View {
                                     zone: zone,
                                     now: clockStore.now,
                                     width: columnWidth,
+                                    isSelectedSource: clockStore.selectedReference?.sourceZoneID == zone.id,
                                     isDragging: draggedZoneID == zone.id,
                                     dragOffset: draggedZoneID == zone.id ? draggedColumnOffset : .zero,
                                     showPlaceholder: draggedZoneID == zone.id,
