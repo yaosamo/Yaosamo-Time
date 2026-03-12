@@ -11,15 +11,18 @@ import AppKit
 @main
 struct Yaosamo_TimeApp: App {
     @StateObject private var clockStore: ClockStore
+    private let widgetStateSyncController: WidgetStateSyncController
     private let settingsWindowController: SettingsWindowController
     private let menuBarController: MenuBarController
 
     init() {
         let clockStore = ClockStore()
         _clockStore = StateObject(wrappedValue: clockStore)
+        widgetStateSyncController = WidgetStateSyncController()
         let settingsWindowController = SettingsWindowController(clockStore: clockStore)
         self.settingsWindowController = settingsWindowController
         menuBarController = MenuBarController(clockStore: clockStore, settingsWindowController: settingsWindowController)
+        widgetStateSyncController.syncFromAppDefaultsIfNeeded()
     }
 
     var body: some Scene {

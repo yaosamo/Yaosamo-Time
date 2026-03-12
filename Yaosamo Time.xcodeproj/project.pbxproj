@@ -6,8 +6,47 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		14A0ED550777EAEF4F351078 /* YaosamoTimeWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B77DD13D66C25F083203A9B /* YaosamoTimeWidget.swift */; };
+		435912382B3756AA88452B04 /* Yaosamo Time WidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 4A15BAE47247184506208F8D /* Yaosamo Time WidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		4B9D7E021931029B10062F47 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0C50A474D8878471172810A /* Cocoa.framework */; };
+		BC037D04BC984CD062E1489A /* YaosamoTimeSharedStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCE0DD67439650E756DE604 /* YaosamoTimeSharedStore.swift */; };
+		D01275993B3D16C43DCCB292 /* YaosamoTimeWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0510A24EB575A6772B42966D /* YaosamoTimeWidgetBundle.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8B23237DF93A6CAA10B1020A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 600B24DD2F4E29020010DC87 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ED6B4415B12D38D4BD99423A;
+			remoteInfo = "Yaosamo Time WidgetExtension";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C8A5D6DCB0E8E6A6F583360A /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				435912382B3756AA88452B04 /* Yaosamo Time WidgetExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		0510A24EB575A6772B42966D /* YaosamoTimeWidgetBundle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = YaosamoTimeWidgetBundle.swift; sourceTree = "<group>"; };
+		2CCE0DD67439650E756DE604 /* YaosamoTimeSharedStore.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = YaosamoTimeSharedStore.swift; sourceTree = "<group>"; };
+		4A15BAE47247184506208F8D /* Yaosamo Time WidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Yaosamo Time WidgetExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		600B24E52F4E29020010DC87 /* Yaosamo Time.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Yaosamo Time.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		663810EC3B71AF0FD91AABCD /* Yaosamo Time WidgetExtension.entitlements */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.entitlements; path = "Yaosamo Time WidgetExtension.entitlements"; sourceTree = "<group>"; };
+		9B77DD13D66C25F083203A9B /* YaosamoTimeWidget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = YaosamoTimeWidget.swift; sourceTree = "<group>"; };
+		A8EB21D1DE32698166D64BEF /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C0C50A474D8878471172810A /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -26,14 +65,36 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DA9E6D47AF104124907985CA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4B9D7E021931029B10062F47 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0B6D26B7C6B7D6C169DB978D /* WidgetExtension */ = {
+			isa = PBXGroup;
+			children = (
+				9B77DD13D66C25F083203A9B /* YaosamoTimeWidget.swift */,
+				0510A24EB575A6772B42966D /* YaosamoTimeWidgetBundle.swift */,
+				A8EB21D1DE32698166D64BEF /* Info.plist */,
+				663810EC3B71AF0FD91AABCD /* Yaosamo Time WidgetExtension.entitlements */,
+			);
+			path = WidgetExtension;
+			sourceTree = "<group>";
+		};
 		600B24DC2F4E29020010DC87 = {
 			isa = PBXGroup;
 			children = (
 				600B24E72F4E29020010DC87 /* App */,
 				600B24E62F4E29020010DC87 /* Products */,
+				F587599DF43A8D253C8FECAE /* Frameworks */,
+				793D48CDED6FD8D7662A1ACD /* Shared */,
+				0B6D26B7C6B7D6C169DB978D /* WidgetExtension */,
 			);
 			sourceTree = "<group>";
 		};
@@ -41,8 +102,33 @@
 			isa = PBXGroup;
 			children = (
 				600B24E52F4E29020010DC87 /* Yaosamo Time.app */,
+				4A15BAE47247184506208F8D /* Yaosamo Time WidgetExtension.appex */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		793D48CDED6FD8D7662A1ACD /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				2CCE0DD67439650E756DE604 /* YaosamoTimeSharedStore.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		A01ECFEEB95F44CD0796EBDE /* OS X */ = {
+			isa = PBXGroup;
+			children = (
+				C0C50A474D8878471172810A /* Cocoa.framework */,
+			);
+			name = "OS X";
+			sourceTree = "<group>";
+		};
+		F587599DF43A8D253C8FECAE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A01ECFEEB95F44CD0796EBDE /* OS X */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -55,20 +141,37 @@
 				600B24E12F4E29020010DC87 /* Sources */,
 				600B24E22F4E29020010DC87 /* Frameworks */,
 				600B24E32F4E29020010DC87 /* Resources */,
+				C8A5D6DCB0E8E6A6F583360A /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				BA85D5FE5D2FB5FC168C4456 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				600B24E72F4E29020010DC87 /* App */,
 			);
 			name = "Yaosamo Time";
-			packageProductDependencies = (
-			);
 			productName = "Yaosamo Time";
 			productReference = 600B24E52F4E29020010DC87 /* Yaosamo Time.app */;
 			productType = "com.apple.product-type.application";
+		};
+		ED6B4415B12D38D4BD99423A /* Yaosamo Time WidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 20049899676977DDEB633492 /* Build configuration list for PBXNativeTarget "Yaosamo Time WidgetExtension" */;
+			buildPhases = (
+				787191FCB0DDC3D0364FA2E7 /* Sources */,
+				DA9E6D47AF104124907985CA /* Frameworks */,
+				AEB1DDD43AC1A886EB9760EF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Yaosamo Time WidgetExtension";
+			productName = "Yaosamo Time WidgetExtension";
+			productReference = 4A15BAE47247184506208F8D /* Yaosamo Time WidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -100,12 +203,20 @@
 			projectRoot = "";
 			targets = (
 				600B24E42F4E29020010DC87 /* Yaosamo Time */,
+				ED6B4415B12D38D4BD99423A /* Yaosamo Time WidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		600B24E32F4E29020010DC87 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AEB1DDD43AC1A886EB9760EF /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -122,7 +233,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		787191FCB0DDC3D0364FA2E7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BC037D04BC984CD062E1489A /* YaosamoTimeSharedStore.swift in Sources */,
+				14A0ED550777EAEF4F351078 /* YaosamoTimeWidget.swift in Sources */,
+				D01275993B3D16C43DCCB292 /* YaosamoTimeWidgetBundle.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BA85D5FE5D2FB5FC168C4456 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Yaosamo Time WidgetExtension";
+			target = ED6B4415B12D38D4BD99423A /* Yaosamo Time WidgetExtension */;
+			targetProxy = 8B23237DF93A6CAA10B1020A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		600B24EE2F4E29020010DC87 /* Debug */ = {
@@ -255,7 +385,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1.11;
+				CURRENT_PROJECT_VERSION = 1.2;
 				DEVELOPMENT_TEAM = 6J57A4298A;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -308,7 +438,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1.11;
+				CURRENT_PROJECT_VERSION = 1.2;
 				DEVELOPMENT_TEAM = 6J57A4298A;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -349,9 +479,76 @@
 			};
 			name = Release;
 		};
+		69B175A2F901454CCCE11686 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_ENTITLEMENTS = "WidgetExtension/Yaosamo Time WidgetExtension.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.2;
+				DEVELOPMENT_TEAM = 6J57A4298A;
+				ENABLE_APP_SANDBOX = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = WidgetExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Yaosamo Time Widget";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 15.6;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yaosamo.time.widgetextension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		94D1D3F7418D9F8B6FC399F5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_ENTITLEMENTS = "WidgetExtension/Yaosamo Time WidgetExtension.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.2;
+				DEVELOPMENT_TEAM = 6J57A4298A;
+				ENABLE_APP_SANDBOX = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = WidgetExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Yaosamo Time Widget";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 15.6;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yaosamo.time.widgetextension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		20049899676977DDEB633492 /* Build configuration list for PBXNativeTarget "Yaosamo Time WidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				94D1D3F7418D9F8B6FC399F5 /* Release */,
+				69B175A2F901454CCCE11686 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		600B24E02F4E29020010DC87 /* Build configuration list for PBXProject "Yaosamo Time" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
