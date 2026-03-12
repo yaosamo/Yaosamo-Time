@@ -156,6 +156,7 @@ struct AddCityPopover: View {
     @State private var statusText = "Type at least 2 characters"
     @State private var isSearching = false
     @State private var errorText: String?
+    @State private var focusTask: Task<Void, Never>?
     @FocusState private var isFieldFocused: Bool
 
     init(isPresented: Binding<Bool>, mode: LocationPickerMode = .add) {
@@ -224,8 +225,21 @@ struct AddCityPopover: View {
         }
         .padding(12)
         .frame(width: 320)
-        .task {
-            isFieldFocused = true
+        .onAppear {
+            focusTask?.cancel()
+            focusTask = Task {
+                // Delay first-responder assignment until the nested popover has finished presenting.
+                try? await Task.sleep(nanoseconds: 200_000_000)
+                guard !Task.isCancelled, isPresented else { return }
+                await MainActor.run {
+                    isFieldFocused = true
+                }
+            }
+        }
+        .onDisappear {
+            focusTask?.cancel()
+            focusTask = nil
+            isFieldFocused = false
         }
         .task(id: query) {
             await searchCities(for: query)
