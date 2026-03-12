@@ -92,18 +92,18 @@ struct YaosamoTimeWidgetEntryView: View {
     private var horizontalPadding: CGFloat {
         switch family {
         case .systemMedium:
-            return 8
+            return 0
         default:
-            return 10
+            return 0
         }
     }
 
     private var verticalPadding: CGFloat {
         switch family {
         case .systemMedium:
-            return 7
+            return 0
         default:
-            return 6
+            return 0
         }
     }
 
